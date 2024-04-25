@@ -34,4 +34,10 @@ public class EmployeeController {
     public void updateEmployee(@RequestBody EmployeeDto employeeDto){
         employeeService.updateEmployee(employeeDto.getId(), employeeDto.getName(), employeeDto.getDateOfBirth());
     }
+
+    @DeleteMapping("/employee")
+    @ResponseStatus(value = HttpStatus.OK)
+    public void deleteEmployee(@RequestBody EmployeeDto employeeDto){
+        employeeService.deleteEmployee(employeeDto.getId());
+    }
 }

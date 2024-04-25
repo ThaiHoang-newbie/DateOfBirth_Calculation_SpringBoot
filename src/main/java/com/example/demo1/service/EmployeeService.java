@@ -14,4 +14,5 @@ public interface EmployeeService {
 
     void updateEmployee(Long id, String name, Date dayOfBirth);
 
+    void deleteEmployee(Long id);
 }
