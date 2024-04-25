@@ -12,4 +12,6 @@ public interface EmployeeService {
 
     void createEmployee(String name, Date dayOfBirth);
 
+    void updateEmployee(Long id, String name, Date dayOfBirth);
+
 }

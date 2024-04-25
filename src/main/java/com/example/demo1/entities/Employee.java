@@ -11,11 +11,10 @@ public class Employee {
 
     @Column(name = "date_of_birth")
     Date dateOfBirth;
-
+ 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_generator")
     @SequenceGenerator(name = "employee_generator", sequenceName = "employee_seq", allocationSize = 1)
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
     Long id;
 
     public String getName() {
