@@ -63,4 +63,9 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EntityNotFoundException("Employee with ID " + id + " not found");
         }
     }
+
+    @Override
+    public void deleteEmployee(Long id) {
+        employeeRepo.deleteById(id);
+    }
 }
