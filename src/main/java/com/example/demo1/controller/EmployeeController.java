@@ -24,8 +24,8 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee/search")
-    public EmployeeDto getEmployeeByName(@RequestParam("name") String name){
-        return employeeService.getEmployeeByName(name);
+    public List<EmployeeDto> getEmployeesByName(@RequestParam("name") String name){
+        return employeeService.getEmployeesByName(name);
     }
 
     @PostMapping("/employee")

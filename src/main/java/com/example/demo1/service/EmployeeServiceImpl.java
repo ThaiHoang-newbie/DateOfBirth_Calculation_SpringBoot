@@ -103,17 +103,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeDto getEmployeeByName(String name) {
+    public List<EmployeeDto> getEmployeesByName(String name) {
         List<Employee> employees = employeeRepo.findByName(name);
-        if (employees.isEmpty()) {
-            return null;
-        } else if (employees.size() > 1) {
-            return null;
-        } else {
-            Employee item = employees.get(0);
-            return new EmployeeDto(item.getId(), item.getName(), item.getDateOfBirth(), item.getChineseZodiac(), item.getElement());
-        }
-
+    
+        return employees.stream()
+                        .map(item -> new EmployeeDto(item.getId(), item.getName(), item.getDateOfBirth(), item.getChineseZodiac(), item.getElement()))
+                        .collect(Collectors.toList());
     }
 
     @Override
