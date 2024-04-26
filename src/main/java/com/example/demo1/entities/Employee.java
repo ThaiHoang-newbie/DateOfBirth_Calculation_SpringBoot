@@ -11,6 +11,12 @@ public class Employee {
 
     @Column(name = "date_of_birth")
     Date dateOfBirth;
+
+    @Column(name = "chinese_zodiac")
+    String chineseZodiac;
+
+    @Column(name = "element")
+    String element;
  
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_generator")
@@ -39,5 +45,21 @@ public class Employee {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getChineseZodiac() {
+        return chineseZodiac;
+    }
+
+    public void setChineseZodiac(String chineseZodiac) {
+        this.chineseZodiac = chineseZodiac;
+    }
+
+    public String getElement() {
+        return element;
+    }
+
+    public void setElement(String element) {
+        this.element = element;
     }
 }
