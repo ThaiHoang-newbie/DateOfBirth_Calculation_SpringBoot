@@ -6,13 +6,16 @@ public class EmployeeDto {
 
     Long id;
     String name;
-
     Date dateOfBirth;
+    String tuoiamlich;
+    String mang;
 
-    public EmployeeDto(Long id, String name, Date dateOfBirth) {
+    public EmployeeDto(Long id, String name, Date dateOfBirth, String tuoiamlich, String mang) {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
+        this.tuoiamlich = tuoiamlich;
+        this.mang = mang;
     }
 
     public EmployeeDto() {
@@ -42,5 +45,19 @@ public class EmployeeDto {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public String getTuoiamlich() {
+        return tuoiamlich;
+    }
 
+    public void setTuoiamlich(String tuoiamlich) {
+        this.tuoiamlich = tuoiamlich;
+    }
+
+    public String getMang() {
+        return mang;
+    }
+
+    public void setMang(String mang) {
+        this.mang = mang;
+    }
 }
