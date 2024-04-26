@@ -23,6 +23,11 @@ public class EmployeeController {
         return employeeService.getEmployeeById(id);
     }
 
+    @GetMapping("/employee/search")
+    public EmployeeDto getEmployeeByName(@RequestParam("name") String name){
+        return employeeService.getEmployeeByName(name);
+    }
+
     @PostMapping("/employee")
     @ResponseStatus(value = HttpStatus.CREATED)
     public void createEmployee(@RequestBody EmployeeDto employeeDto){

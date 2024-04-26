@@ -9,6 +9,7 @@ public interface EmployeeService {
     List<EmployeeDto> getEmployees();
 
     EmployeeDto getEmployeeById(Long id);
+    EmployeeDto getEmployeeByName(String name);
 
     void createEmployee(String name, Date dayOfBirth);
 

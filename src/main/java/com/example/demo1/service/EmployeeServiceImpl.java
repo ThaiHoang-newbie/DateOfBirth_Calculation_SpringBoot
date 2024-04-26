@@ -103,6 +103,20 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public EmployeeDto getEmployeeByName(String name) {
+        List<Employee> employees = employeeRepo.findByName(name);
+        if (employees.isEmpty()) {
+            return null;
+        } else if (employees.size() > 1) {
+            return null;
+        } else {
+            Employee item = employees.get(0);
+            return new EmployeeDto(item.getId(), item.getName(), item.getDateOfBirth(), item.getChineseZodiac(), item.getElement());
+        }
+
+    }
+
+    @Override
     public void createEmployee(String name, Date dayOfBirth) {
         LocalDate dateOfBirth = dayOfBirth.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         int year = Year.from(dateOfBirth).getValue();
