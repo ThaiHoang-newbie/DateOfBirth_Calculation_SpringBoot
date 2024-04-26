@@ -7,15 +7,15 @@ public class EmployeeDto {
     Long id;
     String name;
     Date dateOfBirth;
-    String tuoiamlich;
-    String mang;
+    String chineseZodiac;
+    String element;
 
-    public EmployeeDto(Long id, String name, Date dateOfBirth, String tuoiamlich, String mang) {
+    public EmployeeDto(Long id, String name, Date dateOfBirth, String chineseZodiac, String element) {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
-        this.tuoiamlich = tuoiamlich;
-        this.mang = mang;
+        this.chineseZodiac = chineseZodiac;
+        this.element = element;
     }
 
     public EmployeeDto() {
@@ -45,19 +45,19 @@ public class EmployeeDto {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getTuoiamlich() {
-        return tuoiamlich;
+    public String getChineseZodiac() {
+        return chineseZodiac;
     }
 
-    public void setTuoiamlich(String tuoiamlich) {
-        this.tuoiamlich = tuoiamlich;
+    public void setChineseZodiac(String chineseZodiac) {
+        this.chineseZodiac = chineseZodiac;
     }
 
-    public String getMang() {
-        return mang;
+    public String getElement() {
+        return element;
     }
 
-    public void setMang(String mang) {
-        this.mang = mang;
+    public void setElement(String element) {
+        this.element = element;
     }
 }

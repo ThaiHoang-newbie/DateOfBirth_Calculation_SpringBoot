@@ -21,9 +21,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeRepo employeeRepo;
 
-    private final String[] HEAVENLY_STEMS = {"Canh", "Tan", "Nham", "Quy", "Giap", "At", "Binh", "Dinh", "Mau", "Ky"};
-    private final String[] EARTHLY_BRANCHES = {"Ty", "Suu", "Dan", "Mao", "Thin", "Ty.", "Ngo", "Mui", "Than", "Dau", "Tuat", "Hoi"};
-    private final String[] ELEMENTS  = {"Kim", "Thuy", "Hoa", "Tho", "Moc"};
+    private final String[] HEAVENLY_STEMS = {"Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ", "Canh", "Tân", "Nhâm", "Quý"};
+    private final String[] EARTHLY_BRANCHES = {"Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi"};
+    private final String[] ELEMENTS  = {"Kim", "Thuỷ", "Hoả", "Thổ", "Mộc"};
 
     private String calculateChineseZodiac(int year) {
         int stemIndex = (year - 4) % 10;
@@ -86,18 +86,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         int indexElement = (thienCan + diaChi) > 5 ? (thienCan + diaChi) - 5 : (thienCan + diaChi); 
         String element = ELEMENTS[indexElement - 1];
         return element;
-
     }
 
     public List<EmployeeDto> getEmployees() {
         return employeeRepo.findAll().stream()
                 .map(obj -> {
-                    LocalDate dateOfBirth = obj.getDateOfBirth().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                    int year = Year.from(dateOfBirth).getValue();
-
-                    String chineseZodiac = calculateChineseZodiac(year);
-                    String fiveElements = calculateFiveElements(year);
-                    return new EmployeeDto(obj.getId(), obj.getName(), obj.getDateOfBirth(), chineseZodiac, fiveElements);
+                    return new EmployeeDto(obj.getId(), obj.getName(), obj.getDateOfBirth(), obj.getChineseZodiac(), obj.getElement());
                 })
                 .collect(Collectors.toList());
     }
@@ -105,15 +99,24 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeDto getEmployeeById(Long id) {
         var item = employeeRepo.findById(id).orElseThrow();
-        return new EmployeeDto(item.getId(), item.getName(), item.getDateOfBirth(), null, null);
+        return new EmployeeDto(item.getId(), item.getName(), item.getDateOfBirth(), item.getChineseZodiac(), item.getElement());
     }
 
     @Override
     public void createEmployee(String name, Date dayOfBirth) {
+        LocalDate dateOfBirth = dayOfBirth.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int year = Year.from(dateOfBirth).getValue();
+        String chineseZodiac = calculateChineseZodiac(year);
+        String fiveElements = calculateFiveElements(year);
+
         Employee newUser = new Employee();
         newUser.setName(name);
         newUser.setDateOfBirth(dayOfBirth);
+        newUser.setChineseZodiac(chineseZodiac);
+        newUser.setElement(fiveElements);
 
+        System.out.println("chineseZodiac " + chineseZodiac);
+        System.out.println("fiveElements" + fiveElements);
         employeeRepo.save(newUser);
     }
 
